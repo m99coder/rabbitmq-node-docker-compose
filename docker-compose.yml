@@ -22,7 +22,7 @@ services:
       - .:/usr/src/app
     depends_on:
       - "rabbitmq"
-    command: sh -c '/bin/wait-for-it.sh rabbitmq:5672 --timeout=30 -- npm run build; node consumer.mjs'
+    command: sh -c '/bin/wait-for-it.sh rabbitmq:5672 --timeout=30 -- node consumer.mjs'
     environment:
       NODE_ENV: production
       AMQP_URL: amqp://rabbitmq:rabbitmq@rabbitmq:5672

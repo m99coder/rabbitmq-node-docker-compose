@@ -11,18 +11,18 @@ export CONSUMER_VERSION=`npx -c 'echo "$npm_package_version"'`
 ```shell
 # dev
 docker build . -t m99coder/rabbitmq-consumer:${CONSUMER_VERSION}-dev --target dev
-docker run -it --name consumer m99coder/rabbitmq-consumer:${CONSUMER_VERSION}-dev /bin/bash -c 'whoami'
+docker run -it --rm --name consumer m99coder/rabbitmq-consumer:${CONSUMER_VERSION}-dev /bin/bash -c 'whoami'
 
 # production
 docker build . -t m99coder/rabbitmq-consumer:${CONSUMER_VERSION} --target production
-docker run -it --name consumer m99coder/rabbitmq-consumer:${CONSUMER_VERSION} /bin/bash -c 'whoami'
+docker run -it --rm --name consumer m99coder/rabbitmq-consumer:${CONSUMER_VERSION} /bin/sh -c 'whoami'
 ```
 
 **Run**
 
 ```shell
 docker compose up
-docker compose exec consumer /bin/bash -c 'for i in {1..15}; do node publisher.mjs; done'
+docker compose exec consumer /bin/bash -c 'for i in {1..10}; do node publisher.mjs; done'
 ```
 
 **Monitor**
