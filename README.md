@@ -9,8 +9,13 @@ export CONSUMER_VERSION=`npx -c 'echo "$npm_package_version"'`
 **Build manually**
 
 ```shell
+# dev
 docker build . -t m99coder/rabbitmq-consumer:${CONSUMER_VERSION}-dev --target dev
 docker run -it --name consumer m99coder/rabbitmq-consumer:${CONSUMER_VERSION}-dev /bin/bash -c 'whoami'
+
+# production
+docker build . -t m99coder/rabbitmq-consumer:${CONSUMER_VERSION} --target production
+docker run -it --name consumer m99coder/rabbitmq-consumer:${CONSUMER_VERSION} /bin/bash -c 'whoami'
 ```
 
 **Run**
